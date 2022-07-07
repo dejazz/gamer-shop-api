@@ -1,24 +1,22 @@
 import { Router } from "express";
 
-
 import userCreateController from "../controllers/user/userCreate.controller";
-import userListController from "../controllers/user/userList.controller"
-import userListOneController from "../controllers/user/userListOne.controller"
-import userLoginController from "../controllers/user/userLogin.controller"
-import userDeleteSelfController from "../controllers/user/userDeleteSelf.controller"
-import userUpdateController from "../controllers/user/userUpdatePassword.controller"
+import userListController from "../controllers/user/userList.controller";
+import userListOneController from "../controllers/user/userListOne.controller";
+import userLoginController from "../controllers/user/userLogin.controller";
+import userDeleteSelfController from "../controllers/user/userDeleteSelf.controller";
+import userUpdateController from "../controllers/user/userUpdatePassword.controller";
+import { authUser } from "../middlewares/authUser.middleware";
 
-const routes = Router()
+const routes = Router();
 
 export const userRoutes = () => {
-    
-    routes.post('/', userCreateController)
-    routes.post('/login', userLoginController)
-    routes.get('/',  userListController)
-    routes.get('/me',  userListOneController)
-    routes.delete('/me',  userDeleteSelfController)
-    routes.patch('/me/updatePassword',  userUpdateController)
+  routes.post("/", userCreateController);
+  routes.post("/login", userLoginController);
+  routes.get("/", authUser, userListController);
+  routes.get("/me", authUser, userListOneController);
+  routes.delete("/me", authUser, userDeleteSelfController);
+  routes.patch("/me/updatePassword", authUser, userUpdateController);
 
-    return routes
-}
-
+  return routes;
+};
