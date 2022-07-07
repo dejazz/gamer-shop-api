@@ -1,0 +1,4 @@
+dotenv
+node_modules
+yarn.lock
+certs
