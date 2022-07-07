@@ -1,9 +1,10 @@
-import { IUserCreate, IUser } from "../../interfaces/user";
+
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import bcrypt from "bcrypt";
-import { AppError } from "../../errors/appError";
+import { AppError } from "../../errors/appError.ts"; 
 import { Cart } from "../../entities/cart.entity";
+import { IUserCreate } from "../../interfaces/users";
 
 const userCreateService = async ({name, email, password}: IUserCreate) => {
 

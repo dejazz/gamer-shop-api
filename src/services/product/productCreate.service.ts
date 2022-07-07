@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source"
 import { Product } from "../../entities/product.entity"
-import { AppError } from "../../errors/appError"
-import { IProductCreate } from "../../interfaces/product"
+import { AppError } from "../../errors/appError.ts" 
+import { IProductCreate } from "../../interfaces/produtcs" 
 
 
 const productCreateService = async ({name, description, price}: IProductCreate) => {

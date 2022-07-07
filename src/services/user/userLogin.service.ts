@@ -1,35 +1,30 @@
-import { IUserLogin } from "../../interfaces/user";
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { AppError } from "../../errors/appError";
+import { IUserLogin } from "../../interfaces/users";
+import { AppError } from "../../errors/appError.ts";
 
+const userLoginService = async ({ email, password }: IUserLogin) => {
+  const userRepository = AppDataSource.getRepository(User);
 
-const userLoginService = async ({email, password}: IUserLogin) => {
+  const users = await userRepository.find();
 
-    const userRepository = AppDataSource.getRepository(User) 
+  const account = users.find((user) => user.email === email);
 
-    const users = await userRepository.find()
+  if (!account) {
+    throw new AppError(404, "Account not found");
+  }
 
-    const account = users.find(user => user.email === email)
+  if (!bcrypt.compareSync(password, account.password)) {
+    throw new AppError(401, "Wrong email/password");
+  }
 
-    if (!account) {
-        throw new AppError(404, "Account not found")
-    }
+  const token = jwt.sign({ email: email }, String(process.env.JWT_SECRET), {
+    expiresIn: "1d",
+  });
 
-    if(!bcrypt.compareSync(password, account.password)){
-        throw new AppError(401, "Wrong email/password")
-    } 
+  return token;
+};
 
-    const token = jwt.sign(
-        {email: email},
-        String(process.env.JWT_SECRET),
-        {expiresIn: '1d'}
-    )
-
-    return token
-
-}
-
-export default userLoginService
+export default userLoginService;

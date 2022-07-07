@@ -1,7 +1,8 @@
 import { AppDataSource } from "../../data-source"
 import { User } from "../../entities/user.entity"
 import bcrypt from "bcrypt"
-import { AppError } from "../../errors/appError"
+import { AppError } from "../../errors/appError.ts"
+
 
 const userUpdatePasswordService = async (email: string, password: string) => {
 
