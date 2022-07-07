@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authUser } from "../middlewares/authUser.middleware";
+
 
 import userCreateController from "../controllers/user/userCreate.controller";
 import userListController from "../controllers/user/userList.controller"
@@ -14,10 +14,10 @@ export const userRoutes = () => {
     
     routes.post('/', userCreateController)
     routes.post('/login', userLoginController)
-    routes.get('/', authUser, userListController)
-    routes.get('/me', authUser, userListOneController)
-    routes.delete('/me', authUser, userDeleteSelfController)
-    routes.patch('/me/updatePassword', authUser, userUpdateController)
+    routes.get('/',  userListController)
+    routes.get('/me',  userListOneController)
+    routes.delete('/me',  userDeleteSelfController)
+    routes.patch('/me/updatePassword',  userUpdateController)
 
     return routes
 }
