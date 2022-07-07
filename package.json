@@ -5,6 +5,12 @@
   "repository": "git@github.com:dejazz/gamer-shop-api.git",
   "author": "Gabriel Schneider <gabrielmunizsch@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "test": "NODE_ENV=test jest"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
@@ -17,7 +23,7 @@
     "sqlite3": "^5.0.8",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.5",
-    "ts-node-dev": "^1.1.8",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^4.6.3"
   },
   "dependencies": {
@@ -28,10 +34,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.8.2",
     "typeorm": "^0.3.6",
     "uuid": "^8.3.2"
-  },
-  "scripts": {
-    "test": "jest"
   }
 }
