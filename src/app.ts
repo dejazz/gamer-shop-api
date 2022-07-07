@@ -5,3 +5,6 @@ import { handleError } from './middlewares/verifyError.middleware'
 const app = express()
 
 app.use(handleError)
+
+
+export default app
