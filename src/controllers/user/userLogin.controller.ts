@@ -1,24 +1,12 @@
-import { Request, Response } from 'express'
-import userLoginService from '../../services/user/userLogin.service'
-import { AppError, handleError } from '../../errors/appError'
-
+import { Request, Response } from "express";
+import userLoginService from "../../services/user/userLogin.service";
 
 const userLoginController = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
 
-    try {
+  const token = await userLoginService({ email, password });
 
-        const {email, password} = req.body
+  return res.status(201).json({ token });
+};
 
-        const token =  await userLoginService({email, password})
-        
-        return res.status(201).json({token})
-
-    } catch (err) {
-
-        if (err instanceof AppError) {
-            handleError(err, res)
-        }
-    }
-}
-
-export default userLoginController
+export default userLoginController;

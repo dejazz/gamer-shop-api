@@ -1,25 +1,14 @@
-import { Request, Response } from 'express'
-import userUpdatePasswordService from '../../services/user/userUpdatePassword.service'
-import { AppError, handleError } from '../../errors/appError'
+import { Request, Response } from "express";
+import userUpdatePasswordService from "../../services/user/userUpdatePassword.service";
 
 const userUpdatePasswordController = async (req: Request, res: Response) => {
+  const email = req.userEmail;
 
-    try {
+  const { password } = req.body;
 
-        const email = req.userEmail
+  const user = await userUpdatePasswordService(email, password);
 
-        const {password} = req.body
+  return res.status(201).json({ message: "Password updated!" });
+};
 
-        const user =  await userUpdatePasswordService(email, password)
-        
-        return res.status(201).json({message: "Password updated!"})
-
-    } catch (err) {
-
-        if (err instanceof AppError) {
-            handleError(err, res)
-        }
-    }
-}
-
-export default userUpdatePasswordController
+export default userUpdatePasswordController;

@@ -1,24 +1,13 @@
-import { Request, Response } from 'express'
-import userListOneService from '../../services/user/userListOne.service'
-import { AppError, handleError } from '../../errors/appError'
+import { Request, Response } from "express";
+import userListOneService from "../../services/user/userListOne.service";
 
 
 const userListOneController = async (req: Request, res: Response) => {
+  const email = req.userEmail;
 
-    try {
+  const user = await userListOneService(email);
 
-        const email = req.userEmail
+  return res.status(200).send(user);
+};
 
-        const user =  await userListOneService(email)
-        
-        return res.status(200).send(user)
-
-    } catch (err) {
-
-        if (err instanceof AppError) {
-            handleError(err, res)
-        }
-    }
-}
-
-export default userListOneController
+export default userListOneController;

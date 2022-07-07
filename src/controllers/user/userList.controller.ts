@@ -1,22 +1,11 @@
-import { Request, Response } from 'express'
-import listUsersService from '../../services/user/userList.service'
-import { AppError, handleError } from '../../errors/appError'
+import { Request, Response } from "express";
+import listUsersService from "../../services/user/userList.service";
 
 
 const userListController = async (req: Request, res: Response) => {
+  const users = await listUsersService();
 
-    try {
+  return res.send(users);
+};
 
-        const users = await listUsersService()
-
-        return res.send(users)
-
-    } catch (err) {
-
-        if (err instanceof AppError) {
-            handleError(err, res)
-        }
-    }
-}
-
-export default userListController
+export default userListController;
