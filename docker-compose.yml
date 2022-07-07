@@ -2,16 +2,16 @@ version: '3.9'
 
 services:
   api:
-    container_name: api_gamer_shop
+    container_name: api
     build: .
     ports:
       - 3000:3000
     environment:
-      - DB_HOST=db_shop
+      - DB_HOST=db
       - DB_PASSWORD=8991
       - DB=db_gamer_shop
       - DB_USER=gabriel
-      - SECRET_KEY=jdisjadisajdopasjop342
+      - SECRET_KEY=7792125bbce085d0b54cd64a7065aef4
     depends_on:
       db:
         condition: service_healthy
@@ -19,10 +19,10 @@ services:
       - .:/app
   
   db:
-    container_name: db_shop
+    container_name: db
     image: postgres:14
     ports:
-      - 5432:5432
+      - 5431:5432
     environment:
       - POSTGRES_USER=gabriel
       - POSTGRES_PASSWORD=8991
@@ -34,8 +34,8 @@ services:
       retries: 5
       start_period: 5s
     volumes:
-      - postgres_gamer_shop:/var/lib/postgresql/data
+      - postgres_db_gamer_shop:/var/lib/postgresql/data
 
 volumes:
-  postgres_gamer_shop:
+  postgres_db_gamer_shop:
     driver: local

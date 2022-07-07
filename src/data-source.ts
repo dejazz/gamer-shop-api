@@ -1,6 +1,8 @@
+
 import { DataSource } from "typeorm"
 
-require("dotenv").config()
+import "dotenv/config"
+
 export const AppDataSource = 
 process.env.NODE_ENV === "test"
 ? new DataSource({
