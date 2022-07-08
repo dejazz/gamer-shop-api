@@ -5,7 +5,7 @@ const buyCreateController = async (req: Request, res: Response) => {
 
 
 
-        const { userEmail } = req
+        const  userEmail  = req.body
 
         const buy = await buyCreateService(userEmail)
 

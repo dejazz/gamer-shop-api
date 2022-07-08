@@ -9,7 +9,6 @@ export const appRoutes = (app: Express) => {
 
     app.use('/users', userRoutes())
     app.use('/products', productRoutes())
-    app.use('/cart',cartRoutes)
-    app.use('/buys', buyRoutes)
-
+    app.use('/cart',cartRoutes())
+    app.use('/buys', buyRoutes())
 }

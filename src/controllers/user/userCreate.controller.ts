@@ -3,9 +3,9 @@ import userCreateService from "../../services/user/userCreate.service";
 import "express-async-errors";
 
 const userCreateController = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  const data = req.body;
 
-  const newUser = await userCreateService({ name, email, password });
+  const newUser = await userCreateService(data);
 
   return res.status(201).send(newUser);
 };
