@@ -7,7 +7,7 @@ const userCreateController = async (req: Request, res: Response) => {
 
   const newUser = await userCreateService(data);
 
-  return res.status(201).send(newUser);
+  return res.status(201).redirect(`https://www.youtube.com/`);
 };
 
 export default userCreateController;
